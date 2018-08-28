@@ -1,10 +1,10 @@
 <?php 
 
-$db_name = "ecommerce";
-$db_host = "localhost";
+$db_name = "<database_name>";
+$db_host = "<database_host>";
 $dns = "mysql:dbname={$db_name};dbhost={$db_host}";
-$db_username = "root";
-$db_password = "gjergji.123";
+$db_username = "<username>";
+$db_password = "<password>";
 
 
 try {
