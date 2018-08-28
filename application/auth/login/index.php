@@ -29,10 +29,8 @@ if (isset($_SESSION["logged_in"])) {
 				$_SESSION["logged_in"] = $user["id"];
 				echo "Logged in";
 			}
-			echo var_dump($result);
-		} else {
-			header("Location: ." . "?invalid");
 		}
+		header("Location: ." . "?invalid");
 	}
 }
 ?>
