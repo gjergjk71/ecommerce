@@ -2,9 +2,10 @@
 
 session_start();
 include '../../connect.php';
+include "../../config.php";
 
 if (isset($_SESSION["logged_in"])) {
-	echo "logout";
+	header("Location: " . constant("PROJECT_INDEX"));
 } else {
 	if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		if (isset($_GET["invalid"])) {
