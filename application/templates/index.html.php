@@ -2,9 +2,10 @@ Products:
 <br>
 <?php foreach($products as $product): ?>
 
-	<?php echo $product["name"]; ?> -
-	<?php echo $product["price"]; ?>$
-	<input type="submit" value="Buy">
+	<a href="product/?product_id=<?php echo $product["id"] ?>">
+		<?php echo $product["name"]; ?> -
+		<?php echo $product["price"]; ?>$	
+	</a>
 	<br>
 
 <?php endforeach ?>
