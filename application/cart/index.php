@@ -2,6 +2,11 @@
 
 session_start();
 include '../connect.php';
+include '../config.php';
+
+if (!$_SESSION["logged_in"]) {
+	header("Location: " . constant("PROJECT_INDEX") . "/auth/login");
+}
 
 try {
 	$sql = "SELECT id FROM Cart WHERE user_id=:user_id";
@@ -28,5 +33,6 @@ try {
 } catch (PDOException $e) {
 	echo $e;
 }
+
 
 ?>
