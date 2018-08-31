@@ -12,7 +12,7 @@ function getCart(PDO $pdo) {
 	try {
 		$sql = "SELECT id FROM Cart 
 				WHERE user_id = :user_id
-				AND status = 'open'";
+				AND status = 'open' LIMIT 1";
 		$s = $pdo->prepare($sql);
 		$s->bindValue(":user_id",$_SESSION["logged_in"]);
 		$s->execute();
