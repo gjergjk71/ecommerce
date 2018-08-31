@@ -28,6 +28,8 @@ function getCart(PDO $pdo) {
 	}
 }
 
+
+
 try {
 	$cart = getCart($pdo);
 	if (!$cart) {
@@ -42,13 +44,27 @@ try {
 } catch (PDOException $e) {
 	echo $e;
 }
-echo "<br>";
 
 if (isset($_REQUEST["add_item"])) {
-	if (is_int("product_id")) {
-		$sql = "INSERT INTO Invoice";
+	if (ctype_digit($_REQUEST["product_id"]) || $_SERVER["REQUEST_METHOD"] == "POST") {
+		echo "DSA";
+		try {
+			$sql = "INSERT INTO Invoice(cart_id,payment_method_id,item_id)
+					VALUES (:cart_id,:payment_method_id,:item_id)";
+			$s = $pdo->prepare($sql);
+			$s->bindValue(":cart_id",$cart["id"]);
+			$s->bindValue("payment_method_id",1); #NotImplemented
+			$s->bindValue(":item_id",$_REQUEST["add_item"]);
+			$s->execute();
+		} catch (PDOException $e) {
+			echo $e;
+		}
 	}
+	header("Location: " . constant("PROJECT_INDEX") . "/cart");
+
 }
+echo "<br>";
+
 
 try {
 	$sql = "SELECT id,item_id FROM Invoice WHERE cart_id=:cart_id";
